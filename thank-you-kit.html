@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Kit Is Ready — Retire Smart Institute</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0a1628; --gold:#c9972a; --gold2:#e8c97a; --white:#ffffff; }
+    body { background:var(--navy); color:var(--white); font-family:'Source Sans 3',sans-serif; min-height:100vh; overflow-x:hidden; }
+    .bg-glow { position:fixed; inset:0; z-index:0; pointer-events:none; background:radial-gradient(ellipse 70% 45% at 50% -5%,rgba(201,151,42,.13) 0%,transparent 70%),radial-gradient(ellipse 35% 25% at 92% 85%,rgba(201,151,42,.07) 0%,transparent 60%); }
+    .bg-grid { position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.03; background-image:linear-gradient(rgba(201,151,42,1) 1px,transparent 1px),linear-gradient(90deg,rgba(201,151,42,1) 1px,transparent 1px); background-size:60px 60px; }
+    .wrap { position:relative; z-index:1; max-width:680px; margin:0 auto; padding:0 24px 64px; }
+    .topbar { text-align:center; padding:32px 0 0; opacity:0; animation:fadeUp .5s .1s ease forwards; }
+    .topbar span { font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+    .topbar-line { width:36px; height:1px; background:rgba(201,151,42,.4); margin:10px auto 0; }
+    .hero { text-align:center; padding:52px 0 44px; }
+    .check-ring { display:inline-flex; align-items:center; justify-content:center; width:68px; height:68px; border-radius:50%; border:1.5px solid rgba(201,151,42,.35); background:rgba(201,151,42,.1); margin-bottom:28px; opacity:0; animation:popIn .5s .3s cubic-bezier(.34,1.56,.64,1) forwards; }
+    .check-ring svg { width:28px; height:28px; stroke:var(--gold); fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+    .check-ring svg path { stroke-dasharray:50; stroke-dashoffset:50; animation:draw .35s .85s ease forwards; }
+    .hero-eyebrow { font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; opacity:0; animation:fadeUp .5s .5s ease forwards; }
+    .hero-title { font-family:'Playfair Display',serif; font-size:clamp(30px,5.5vw,46px); font-weight:900; line-height:1.12; color:var(--white); margin-bottom:18px; opacity:0; animation:fadeUp .6s .6s ease forwards; }
+    .hero-title em { color:var(--gold); font-style:normal; }
+    .hero-body { font-size:16.5px; font-weight:300; line-height:1.75; color:rgba(255,255,255,.65); max-width:500px; margin:0 auto; opacity:0; animation:fadeUp .6s .7s ease forwards; }
+    .card { background:rgba(255,255,255,.04); border:1px solid rgba(201,151,42,.2); border-radius:14px; padding:36px 36px 32px; margin:0 0 28px; opacity:0; animation:fadeUp .6s .85s ease forwards; }
+    .card-head { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+    .card-icon { width:48px; height:48px; border-radius:10px; background:rgba(201,151,42,.12); border:1px solid rgba(201,151,42,.2); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .card-icon svg { width:22px; height:22px; stroke:var(--gold); fill:none; stroke-width:1.8; }
+    .card-info h2 { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--white); line-height:1.3; margin-bottom:3px; }
+    .card-info p { font-size:12.5px; color:rgba(255,255,255,.4); }
+    .tools-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin-bottom:28px; }
+    @media(max-width:520px){ .tools-grid{grid-template-columns:1fr;} .card{padding:26px 20px 24px;} .hero{padding:36px 0 32px;} }
+    .tool-item { display:flex; align-items:flex-start; gap:8px; font-size:13px; color:rgba(255,255,255,.7); line-height:1.45; }
+    .tool-item::before { content:'✦'; color:var(--gold); font-size:9px; flex-shrink:0; margin-top:4px; }
+    .btn { display:flex; align-items:center; justify-content:center; gap:11px; width:100%; background:var(--gold); color:var(--navy); font-family:'Source Sans 3',sans-serif; font-size:15.5px; font-weight:700; letter-spacing:.04em; padding:17px 28px; border-radius:8px; border:none; cursor:pointer; text-decoration:none; transition:background .18s,transform .12s,box-shadow .18s; box-shadow:0 4px 20px rgba(201,151,42,.28); }
+    .btn:hover { background:var(--gold2); transform:translateY(-2px); box-shadow:0 8px 28px rgba(201,151,42,.38); }
+    .btn:active { transform:translateY(0); }
+    .btn svg { width:18px; height:18px; stroke:var(--navy); fill:none; stroke-width:2.2; flex-shrink:0; }
+    .btn-note { text-align:center; font-size:12px; color:rgba(255,255,255,.3); margin-top:10px; }
+    .steps-section { opacity:0; animation:fadeUp .6s 1.0s ease forwards; margin-bottom:40px; }
+    .steps-label { font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; text-align:center; }
+    .steps { display:grid; gap:10px; }
+    .step { display:flex; align-items:flex-start; gap:14px; background:rgba(255,255,255,.027); border:1px solid rgba(255,255,255,.07); border-radius:9px; padding:15px 18px; }
+    .step-n { width:26px; height:26px; border-radius:50%; background:rgba(201,151,42,.12); border:1px solid rgba(201,151,42,.28); font-size:11.5px; font-weight:700; color:var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .step-t strong { display:block; font-size:13.5px; color:var(--white); margin-bottom:2px; }
+    .step-t span { font-size:12.5px; color:rgba(255,255,255,.48); line-height:1.55; }
+    footer { text-align:center; opacity:0; animation:fadeUp .5s 1.1s ease forwards; }
+    footer .brand { font-size:11.5px; font-weight:600; color:var(--gold); letter-spacing:.15em; text-transform:uppercase; margin-bottom:8px; }
+    footer .links { font-size:12px; color:rgba(255,255,255,.3); }
+    footer .links a { color:rgba(255,255,255,.38); text-decoration:none; transition:color .15s; }
+    footer .links a:hover { color:var(--gold); }
+    footer .sep { margin:0 7px; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes popIn  { from{opacity:0;transform:scale(.4)} to{opacity:1;transform:scale(1)} }
+    @keyframes draw   { to{stroke-dashoffset:0} }
+  </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
+<div class="wrap">
+
+  <div class="topbar">
+    <span>Retire Smart Institute</span>
+    <div class="topbar-line"></div>
+  </div>
+
+  <section class="hero">
+    <div class="check-ring">
+      <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <p class="hero-eyebrow">Order Confirmed</p>
+    <h1 class="hero-title">Your Kit Is<br><em>Ready to Download</em></h1>
+    <p class="hero-body">Thank you for your order. Your Retirement Advisor Vetting Kit is below — save it to your device and bring it to every advisor meeting.</p>
+  </section>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14,2 14,8 20,8"/>
+          <line x1="12" y1="11" x2="12" y2="17"/>
+          <polyline points="9,14 12,17 15,14"/>
+        </svg>
+      </div>
+      <div class="card-info">
+        <h2>Retirement Advisor Vetting Kit</h2>
+        <p>35 pages &nbsp;·&nbsp; 8 tools &nbsp;·&nbsp; Immediate PDF download</p>
+      </div>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool-item">5 Industry Confessions</div>
+      <div class="tool-item">3 Real-World Case Studies</div>
+      <div class="tool-item">21 Questions Checklist</div>
+      <div class="tool-item">Fee Disclosure Letter</div>
+      <div class="tool-item">Advisor Comparison Scorecard</div>
+      <div class="tool-item">BrokerCheck Step-by-Step Guide</div>
+      <div class="tool-item">Form ADV Fiduciary Verification</div>
+      <div class="tool-item">Social Security Red Flag Guide</div>
+      <div class="tool-item">Wrong Advisor Exit Protocol</div>
+      <div class="tool-item">15-Term Insider Glossary</div>
+    </div>
+
+    <a id="dlBtn"
+       href="https://d1yei2z3i6k35z.cloudfront.net/16984349/69cd62fbf3e726.02516613_RSI_Vetting_Kit_FINAL.pdf"
+       class="btn"
+       download="Retirement_Advisor_Vetting_Kit.pdf">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+        <polyline points="7,10 12,15 17,10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download Your Kit — PDF
+    </a>
+    <p class="btn-note">Secure download &nbsp;·&nbsp; No account needed &nbsp;·&nbsp; Save to your device</p>
+  </div>
+
+  <div class="steps-section">
+    <p class="steps-label">How to Use Your Kit</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-t">
+          <strong>Start with the 5 Confessions (Part 1)</strong>
+          <span>Read this before anything else. It gives you the industry context that makes every tool more powerful.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-t">
+          <strong>Print Tool 1 and Tool 3</strong>
+          <span>The 21 Questions Checklist and Comparison Scorecard. Bring them to every advisor meeting.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-t">
+          <strong>Run BrokerCheck before your first meeting</strong>
+          <span>Tool 4 takes 5 minutes at brokercheck.finra.org — check every advisor you seriously consider.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-t">
+          <strong>Send the Fee Letter before you sign anything</strong>
+          <span>Tool 2 is a ready-to-send letter. The response — or lack of one — tells you everything.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="brand">Retire Smart Institute</div>
+    <div class="links">
+      <a href="https://retiresmartinstitute.com">retiresmartinstitute.com</a>
+      <span class="sep">·</span>
+      <a href="/cdn-cgi/l/email-protection#c0b3b5b0b0afb2b480b2a5b4a9b2a5b3ada1b2b4a9aeb3b4a9b4b5b4a5eea3afad"><span class="__cf_email__" data-cfemail="03707673736c7177437166776a7166706e6271776a6d70776a777677662d606c6e">[email&#160;protected]</span></a>
+    </div>
+  </footer>
+
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.getElementById('dlBtn').addEventListener('click', function() {
+    var btn = this;
+    setTimeout(function() {
+      btn.innerHTML = '<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" width="18" height="18" stroke-linecap="round" stroke-line

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Free Guide Is On Its Way | Retire Smart Institute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #1a1a2e;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── TOP CONFIRMATION BAR ── */
+  .confirm-bar {
+    background: #059669;
+    text-align: center;
+    padding: 13px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: .02em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* ── TRANSITION SECTION ── */
+  .transition {
+    background: #0a1628;
+    padding: 56px 24px 60px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+
+  .step-badge {
+    display: inline-block;
+    background: rgba(240,165,0,.12);
+    border: 1px solid rgba(240,165,0,.3);
+    color: #f0a500;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+
+  .transition h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 700;
+    color: #fff;
+    max-width: 640px;
+    margin: 0 auto 16px;
+    line-height: 1.2;
+  }
+
+  .transition p {
+    color: rgba(255,255,255,.55);
+    font-size: 17px;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .transition p strong { color: rgba(255,255,255,.85); }
+
+  /* ── MAIN OFFER ── */
+  .offer-wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 72px 24px;
+  }
+
+  .offer-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: #f0a500;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  .offer-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    text-align: center;
+    color: #0a1628;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin-bottom: 16px;
+  }
+
+  .offer-headline em {
+    font-style: italic;
+    color: #f0a500;
+  }
+
+  .offer-sub {
+    text-align: center;
+    font-size: 18px;
+    color: #6b7280;
+    max-width: 620px;
+    margin: 0 auto 56px;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ── PRODUCT BOX ── */
+  .product-box {
+    background: #fff;
+    border: 1px solid #e4e8ef;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    position: relative;
+  }
+
+  .product-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f0a500, #f5b833, #f0a500);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+  }
+
+  /* LEFT — what's included */
+  .product-left {
+    padding: 48px 44px;
+    border-right: 1px solid #e4e8ef;
+  }
+
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0a1628;
+    margin-bottom: 6px;
+  }
+
+  .product-tagline {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  .component-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .component-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .comp-num {
+    min-width: 28px;
+    height: 28px;
+    background: #0a1628;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #f0a500;
+    flex-shrink: 0;
+  }
+
+  .comp-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0a1628;
+    margin-bottom: 3px;
+  }
+
+  .comp-desc {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  /* RIGHT — price */
+  .product-right {
+    padding: 48px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #f7f9fc;
+  }
+
+  .value-table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .value-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    border-bottom: 1px solid #e4e8ef;
+    font-size: 13px;
+  }
+
+  .value-row:last-child { border-bottom: none; }
+  .value-name { color: #6b7280; text-align: left; }
+  .value-price { color: #9ca3af; text-decoration: line-through; font-size: 12px; }
+
+  .value-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 2px solid #f0a500;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .value-total-price {
+    color: #9ca3af;
+    text-decoration: line-through;
+    font-size: 18px;
+  }
+
+  .price-today-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: #f0a500;
+    margin-bottom: 8px;
+  }
+
+  .price-today {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 800;
+    color: #0a1628;
+    line-height: 1;
+    letter-spacing: -.03em;
+    margin-bottom: 4px;
+  }
+
+  .price-today sup {
+    font-size: 30px;
+    vertical-align: super;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+  }
+
+  .price-note {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-bottom: 28px;
+  }
+
+  .buy-btn {
+    width: 100%;
+    background: #f0a500;
+    color: #0a1628;
+    border: none;
+    border-radius: 12px;
+    padding: 20px 24px;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    transition: background .2s, transform .15s;
+    margin-bottom: 14px;
+    letter-spacing: .01em;
+  }
+
+  .buy-btn:hover { background: #f5b833; transform: translateY(-1px); }
+
+  .guarantee-note {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  .guarantee-note strong { color: #374151; }
+
+  /* ── WHAT EACH COMPONENT SOLVES ── */
+  .solutions-section {
+    background: #f7f9fc;
+    padding: 80px 24px;
+    border-top: 1px solid #e4e8ef;
+  }
+
+  .solutions-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 52px;
+  }
+
+  .solution-card {
+    background: #fff;
+    border: 1px solid #e4e8ef;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  }
+
+  .solution-problem {
+    font-size: 10px;
+    font-weight: 700;
+    color: #f0a500;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 10px;
+  }
+
+  .solution-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0a1628;
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+
+  .solution-card p {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  /* ── SECOND BUY CTA ── */
+  .second-cta {
+    background: linear-gradient(160deg, #0a1628 0%, #0d1f3c 100%);
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .second-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: #fff;
+    max-width: 580px;
+    margin: 0 auto 14px;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+  }
+
+  .second-cta p {
+    color: rgba(255,255,255,.55);
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+
+  .second-cta .price-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 32px;
+    letter-spacing: -.02em;
+  }
+
+  .second-cta .price-display small {
+    font-size: 22px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .cta-wrap { max-width: 380px; margin: 0 auto; }
+
+  /* GUARANTEE BAR */
+  .guarantee-bar {
+    background: #f7f9fc;
+    padding: 24px;
+    border-top: 1px solid #e4e8ef;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .guar-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .guar-dot {
+    width: 6px;
+    height: 6px;
+    background: #059669;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1e;
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,.25);
+    line-height: 1.9;
+  }
+
+  footer a { color: rgba(255,255,255,.35); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .product-left { border-right: none; border-bottom: 1px solid #e4e8ef; padding: 36px 24px; }
+    .product-right { padding: 36px 24px; }
+    .solutions-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .offer-wrap { padding: 48px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CONFIRMATION BAR -->
+<div class="confirm-bar">
+  ✓ &nbsp; Your free guide is on its way — check your inbox in the next 2 minutes
+</div>
+
+<!-- TRANSITION -->
+<div class="transition">
+  <div class="step-badge">Step 2 of 2 — Before You Go</div>
+  <h2>Your Free Guide Is Confirmed.<br>Now Read This Carefully.</h2>
+  <p>The red flags guide tells you what to watch for. What I&rsquo;m about to show you gives you the <strong>complete system</strong> — so you walk into any advisor meeting fully in control.</p>
+</div>
+
+<!-- MAIN OFFER -->
+<div class="offer-wrap">
+  <span class="offer-label">One-Time Offer — Only Available On This Page</span>
+  <h2 class="offer-headline">
+    The Complete<br>
+    <em>Retirement Advisor Vetting Kit</em>
+  </h2>
+  <p class="offer-sub">
+    Everything you need to evaluate, compare, and choose a financial advisor with confidence — before trusting anyone with your retirement savings.
+  </p>
+
+  <!-- PRODUCT BOX -->
+  <div class="product-box">
+    <div class="product-grid">
+
+      <!-- LEFT: WHAT'S INCLUDED -->
+      <div class="product-left">
+        <div class="product-name">The Retirement Advisor Vetting Kit</div>
+        <div class="product-tagline">A complete consumer protection system for adults 55+ with $250K+ saved</div>
+
+        <ul class="component-list">
+          <li>
+            <div class="comp-num">1</div>
+            <div>
+              <div class="comp-name">The Main Guide (40+ pages)</div>
+              <div class="comp-desc">Plain-English walkthrough of everything you need to know before hiring any advisor. Fees, fiduciary duty, conflicts of interest, and how to read the documents they&rsquo;re required to give you.</div>
+            </div>
+          </li>
+          <li>
+            <div class="comp-num">2</div>
+            <div>
+              <div class="comp-name">The 21 Questions Checklist</div>
+              <div class="comp-desc">Exactly what to ask in any advisor meeting — and what the answers should sound like. Print it. Bring it. Use it.</div>
+            </div>
+          </li>
+          <li>
+            <div class="comp-num">3</div>
+            <div>
+              <div class="comp-name">The First Call Scorecard</div>
+              <div class="comp-desc">Score any advisor on 10 criteria in real time during the call. Yes / No / Red Flag format. Know where you stand before you leave the room.</div>
+            </div>
+          </li>
+          <li>
+            <div class="comp-num">4</div>
+            <div>
+              <div class="comp-name">The Advisor Comparison Worksheet</div>
+              <div class="comp-desc">Side-by-side comparison of up to 3 advisors. Fees, credentials, compensation model, fiduciary status, red flags. One clean page.</div>
+            </div>
+          </li>
+          <li>
+            <div class="comp-num">5</div>
+            <div>
+              <div class="comp-name">The Fee Disclosure Template</div>
+              <div class="comp-desc">Every fee you should ask about — advisory, fund expenses, trading costs, platform fees, surrender charges. Know the full picture before you sign anything.</div>
+            </div>
+          </li>
+          <li>
+            <div class="comp-num">6</div>
+            <div>
+              <div class="comp-name">BrokerCheck + Form CRS Walkthrough</div>
+              <div class="comp-desc">Step-by-step guide to checking any advisor&rsquo;s public record in under 5 minutes using free government tools.</div>
+            </div>
+          </li>
+          <li>
+            <div class="comp-num">★</div>
+            <div>
+              <div class="comp-name">Bonus: Spouse Discussion Guide</div>
+              <div class="comp-desc">A simple framework for getting on the same page with your spouse or partner before any financial decision.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- RIGHT: PRICE + CTA -->
+      <div class="product-right">
+        <div class="value-table">
+          <div class="value-row"><span class="value-name">Main Guide (40+ pages)</span><span class="value-price">$47</span></div>
+          <div class="value-row"><span class="value-name">21 Questions Checklist</span><span class="value-price">$27</span></div>
+          <div class="value-row"><span class="value-name">First Call Scorecard</span><span class="value-price">$27</span></div>
+          <div class="value-row"><span class="value-name">Advisor Comparison Worksheet</span><span class="value-price">$27</span></div>
+          <div class="value-row"><span class="value-name">Fee Disclosure Template</span><span class="value-price">$19</span></div>
+          <div class="value-row"><span class="value-name">BrokerCheck Walkthrough</span><span class="value-price">$19</span></div>
+          <div class="value-row"><span class="value-name">Bonus: Spouse Guide</span><span class="value-price">$17</span></div>
+        </div>
+
+        <div class="value-total">
+          <span>Total Value</span>
+          <span class="value-total-price">$183</span>
+        </div>
+
+        <div class="price-today-label">Your Price Today — One Time Only</div>
+        <div class="price-today"><sup>$</sup>97</div>
+        <div class="price-note">Instant digital delivery &nbsp;&middot;&nbsp; No subscription</div>
+
+        <a href="https://buy.stripe.com/3cI8wQ8A3aeX7YBcAnaEE00" class="buy-btn">Get Instant Access Now &rarr;</a>
+
+        <p class="guarantee-note">
+          <strong>30-Day Money-Back Guarantee.</strong><br>
+          If you don&rsquo;t find this useful, email us within 30 days for a full refund. No questions asked.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT EACH COMPONENT SOLVES -->
+<div class="solutions-section">
+  <div class="solutions-inner">
+    <span class="offer-label" style="display:block;text-align:center;margin-bottom:14px">What Each Component Does For You</span>
+    <h2 class="offer-headline" style="font-size:clamp(26px,3.5vw,38px);margin-bottom:0">Every Piece Solves a Specific Problem</h2>
+    <div class="solutions-grid">
+      <div class="solution-card">
+        <div class="solution-problem">Problem &rarr; Solution</div>
+        <h3>&ldquo;I don&rsquo;t know what questions to ask&rdquo;</h3>
+        <p>The 21 Questions Checklist tells you exactly what to ask — and explains what a good answer looks like vs. a warning sign.</p>
+      </div>
+      <div class="solution-card">
+        <div class="solution-problem">Problem &rarr; Solution</div>
+        <h3>&ldquo;I can&rsquo;t tell if an advisor is actually a fiduciary&rdquo;</h3>
+        <p>The Main Guide explains exactly what fiduciary means, how to verify it, and what documents to request before you trust anyone.</p>
+      </div>
+      <div class="solution-card">
+        <div class="solution-problem">Problem &rarr; Solution</div>
+        <h3>&ldquo;I don&rsquo;t understand the fees I&rsquo;m paying&rdquo;</h3>
+        <p>The Fee Disclosure Template walks through every type of fee so you see the real cost before you sign anything.</p>
+      </div>
+      <div class="solution-card">
+        <div class="solution-problem">Problem &rarr; Solution</div>
+        <h3>&ldquo;I&rsquo;m meeting 2&ndash;3 advisors and can&rsquo;t compare them&rdquo;</h3>
+        <p>The Comparison Worksheet puts every advisor on the same scorecard so you compare facts, not pitches.</p>
+      </div>
+      <div class="solution-card">
+        <div class="solution-problem">Problem &rarr; Solution</div>
+        <h3>&ldquo;I don&rsquo;t know how to check an advisor&rsquo;s record&rdquo;</h3>
+        <p>The BrokerCheck Walkthrough shows you how to pull any advisor&rsquo;s public complaint history in under 5 minutes — free.</p>
+      </div>
+      <div class="solution-card">
+        <div class="solution-problem">Problem &rarr; Solution</div>
+        <h3>&ldquo;My spouse and I aren&rsquo;t on the same page&rdquo;</h3>
+        <p>The Spouse Discussion Guide gives you a simple framework to align before any financial meeting.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECOND BUY CTA -->
+<div class="second-cta">
+  <h2>Ready to Walk In Fully Prepared?</h2>
+  <p>You worked decades to build your retirement savings.</p>
+  <div class="price-display"><small>$</small>97 &nbsp;<small style="font-size:16px;color:rgba(255,255,255,.4)">one time</small></div>
+  <div class="cta-wrap">
+    <a href="https://buy.stripe.com/3cI8wQ8A3aeX7YBcAnaEE00" class="buy-btn">Get the Full Vetting Kit — $97 &rarr;</a>
+    <p style="font-size:12px;color:rgba(255,255,255,.3);margin-top:14px">30-day money-back guarantee &nbsp;&middot;&nbsp; Instant PDF delivery &nbsp;&middot;&nbsp; No subscription</p>
+  </div>
+</div>
+
+<!-- GUARANTEE BAR -->
+<div class="guarantee-bar">
+  <span class="guar-item"><span class="guar-dot"></span>30-Day Money-Back Guarantee</span>
+  <span class="guar-item"><span class="guar-dot"></span>Instant Digital Delivery</span>
+  <span class="guar-item"><span class="guar-dot"></span>Consumer Education Only</span>
+  <span class="guar-item"><span class="guar-dot"></span>Not Investment Advice</span>
+  <span class="guar-item"><span class="guar-dot"></span>No Subscription</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong style="color:rgba(255,255,255,.45)">Retire Smart Institute</strong> &nbsp;&middot;&nbsp; retiresmartinstitute.com &nbsp;&middot;&nbsp; Consumer Education Resource<br>
+  This product is for educational and consumer protection purposes only. It does not constitute financial, investment, legal, or tax advice.<br>
+  We do not recommend specific financial advisors, investment products, or strategies.<br>
+  &copy; 2025 Retire Smart Institute &nbsp;&middot;&nbsp; <a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="#">Refund Policy</a>
+</footer>
+
+</body>
+</html>
