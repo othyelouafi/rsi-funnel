@@ -16,7 +16,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ── TOP BAR ── */
+  /* ââ TOP BAR ââ */
   .topbar {
     background: #0a1628;
     text-align: center;
@@ -29,7 +29,7 @@
   }
   .topbar span { color: #f0a500; }
 
-  /* ── HERO ── */
+  /* ââ HERO ââ */
   .hero {
     background: linear-gradient(160deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
     padding: 88px 24px 96px;
@@ -152,7 +152,7 @@
     line-height: 1.5;
   }
 
-  /* ── TRUST BAR ── */
+  /* ââ TRUST BAR ââ */
   .trust-bar {
     background: #fff;
     border-bottom: 1px solid #e8ecf0;
@@ -180,7 +180,7 @@
     flex-shrink: 0;
   }
 
-  /* ── SECTIONS ── */
+  /* ââ SECTIONS ââ */
   .section {
     padding: 88px 24px;
     background: #fff;
@@ -213,7 +213,7 @@
     letter-spacing: -.01em;
   }
 
-  /* ── FLAG GRID ── */
+  /* ââ FLAG GRID ââ */
   .flag-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -267,7 +267,7 @@
     line-height: 1.45;
   }
 
-  /* ── STATS ── */
+  /* ââ STATS ââ */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -299,7 +299,7 @@
     line-height: 1.65;
   }
 
-  /* ── CHECKLIST ── */
+  /* ââ CHECKLIST ââ */
   .checklist {
     list-style: none;
     display: flex;
@@ -334,7 +334,7 @@
     font-weight: 700;
   }
 
-  /* ── BOTTOM CTA ── */
+  /* ââ BOTTOM CTA ââ */
   .bottom-cta {
     background: linear-gradient(160deg, #0a1628 0%, #0d1f3c 100%);
     padding: 88px 24px;
@@ -360,7 +360,7 @@
 
   .bottom-form { max-width: 480px; margin: 0 auto; }
 
-  /* ── FOOTER ── */
+  /* ââ FOOTER ââ */
   footer {
     background: #060f1e;
     padding: 32px 24px;
@@ -372,7 +372,7 @@
 
   footer a { color: rgba(255,255,255,.35); text-decoration: none; }
 
-  /* ── RESPONSIVE ── */
+  /* ââ RESPONSIVE ââ */
   @media (max-width: 900px) {
     .flag-grid { grid-template-columns: repeat(2, 1fr); }
     .stats-grid { grid-template-columns: 1fr; }
@@ -577,9 +577,8 @@ async function submit(inputId) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email })
       });
-    } catch(e) {
-      // continue to redirect
-    }
+    } catch(e) {}
+  window.location.href = '/thank-you.html';
 }
 </script>
 
