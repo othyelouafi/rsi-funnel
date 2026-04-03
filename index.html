@@ -16,7 +16,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Ã¢ÂÂÃ¢ÂÂ TOP BAR Ã¢ÂÂÃ¢ÂÂ */
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ TOP BAR ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
   .topbar {
     background: #0a1628;
     text-align: center;
@@ -29,7 +29,7 @@
   }
   .topbar span { color: #f0a500; }
 
-  /* Ã¢ÂÂÃ¢ÂÂ HERO Ã¢ÂÂÃ¢ÂÂ */
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ HERO ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
   .hero {
     background: linear-gradient(160deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
     padding: 88px 24px 96px;
@@ -152,7 +152,7 @@
     line-height: 1.5;
   }
 
-  /* Ã¢ÂÂÃ¢ÂÂ TRUST BAR Ã¢ÂÂÃ¢ÂÂ */
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ TRUST BAR ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
   .trust-bar {
     background: #fff;
     border-bottom: 1px solid #e8ecf0;
@@ -180,7 +180,7 @@
     flex-shrink: 0;
   }
 
-  /* Ã¢ÂÂÃ¢ÂÂ SECTIONS Ã¢ÂÂÃ¢ÂÂ */
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ SECTIONS ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
   .section {
     padding: 88px 24px;
     background: #fff;
@@ -213,7 +213,7 @@
     letter-spacing: -.01em;
   }
 
-  /* Ã¢ÂÂÃ¢ÂÂ FLAG GRID Ã¢ÂÂÃ¢ÂÂ */
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ FLAG GRID ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
   .flag-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -267,7 +267,7 @@
     line-height: 1.45;
   }
 
-  /* Ã¢ÂÂÃ¢ÂÂ STATS Ã¢ÂÂÃ¢ÂÂ */
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ STATS ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -299,7 +299,7 @@
     line-height: 1.65;
   }
 
-  /* Ã¢ÂÂÃ¢ÂÂ CHECKLIST Ã¢ÂÂÃ¢ÂÂ */
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ CHECKLIST ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
   .checklist {
     list-style: none;
     display: flex;
@@ -334,7 +334,7 @@
     font-weight: 700;
   }
 
-  /* Ã¢ÂÂÃ¢ÂÂ BOTTOM CTA Ã¢ÂÂÃ¢ÂÂ */
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ BOTTOM CTA ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
   .bottom-cta {
     background: linear-gradient(160deg, #0a1628 0%, #0d1f3c 100%);
     padding: 88px 24px;
@@ -360,7 +360,7 @@
 
   .bottom-form { max-width: 480px; margin: 0 auto; }
 
-  /* Ã¢ÂÂÃ¢ÂÂ FOOTER Ã¢ÂÂÃ¢ÂÂ */
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ FOOTER ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
   footer {
     background: #060f1e;
     padding: 32px 24px;
@@ -372,7 +372,7 @@
 
   footer a { color: rgba(255,255,255,.35); text-decoration: none; }
 
-  /* Ã¢ÂÂÃ¢ÂÂ RESPONSIVE Ã¢ÂÂÃ¢ÂÂ */
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ RESPONSIVE ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
   @media (max-width: 900px) {
     .flag-grid { grid-template-columns: repeat(2, 1fr); }
     .stats-grid { grid-template-columns: 1fr; }
@@ -563,24 +563,17 @@ async function submit(inputId) {
     alert('Please enter a valid email address.');
     return;
   }
-
-  // Disable button and show loading
-  var btn = document.querySelector('.form-btn');
-  var original = btn.textContent;
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  btn.style.opacity = '0.7';
-
+  var btns = document.querySelectorAll('.form-btn');
+  btns.forEach(function(b){ b.textContent = 'Sending...'; b.disabled = true; b.style.opacity = '0.7'; });
   try {
-      await fetch('/.netlify/functions/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email })
-      });
-    } catch(e) {}
-  window.location.href = '/thank-you.html';
+    await fetch('/.netlify/functions/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    });
+  } catch(e) {}
+  window.location.href = '/thank-you';
 }
 </script>
-
 </body>
 </html>
