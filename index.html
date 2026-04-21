@@ -16,7 +16,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ TOP BAR ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  /* ── TOP BAR ── */
   .topbar {
     background: #0a1628;
     text-align: center;
@@ -29,7 +29,7 @@
   }
   .topbar span { color: #f0a500; }
 
-  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ HERO ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  /* ── HERO ── */
   .hero {
     background: linear-gradient(160deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
     padding: 88px 24px 96px;
@@ -152,7 +152,7 @@
     line-height: 1.5;
   }
 
-  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ TRUST BAR ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  /* ── TRUST BAR ── */
   .trust-bar {
     background: #fff;
     border-bottom: 1px solid #e8ecf0;
@@ -180,7 +180,7 @@
     flex-shrink: 0;
   }
 
-  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ SECTIONS ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  /* ── SECTIONS ── */
   .section {
     padding: 88px 24px;
     background: #fff;
@@ -213,7 +213,7 @@
     letter-spacing: -.01em;
   }
 
-  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ FLAG GRID ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  /* ── FLAG GRID ── */
   .flag-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -267,7 +267,7 @@
     line-height: 1.45;
   }
 
-  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ STATS ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  /* ── STATS ── */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -299,7 +299,7 @@
     line-height: 1.65;
   }
 
-  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ CHECKLIST ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  /* ── CHECKLIST ── */
   .checklist {
     list-style: none;
     display: flex;
@@ -334,7 +334,7 @@
     font-weight: 700;
   }
 
-  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ BOTTOM CTA ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  /* ── BOTTOM CTA ── */
   .bottom-cta {
     background: linear-gradient(160deg, #0a1628 0%, #0d1f3c 100%);
     padding: 88px 24px;
@@ -360,7 +360,7 @@
 
   .bottom-form { max-width: 480px; margin: 0 auto; }
 
-  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ FOOTER ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  /* ── FOOTER ── */
   footer {
     background: #060f1e;
     padding: 32px 24px;
@@ -372,7 +372,7 @@
 
   footer a { color: rgba(255,255,255,.35); text-decoration: none; }
 
-  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ RESPONSIVE ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     .flag-grid { grid-template-columns: repeat(2, 1fr); }
     .stats-grid { grid-template-columns: 1fr; }
@@ -389,6 +389,23 @@
     .stat-num { font-size: 44px; }
   }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1254519160046839');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1254519160046839&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -563,17 +580,25 @@ async function submit(inputId) {
     alert('Please enter a valid email address.');
     return;
   }
-  var btns = document.querySelectorAll('.form-btn');
-  btns.forEach(function(b){ b.textContent = 'Sending...'; b.disabled = true; b.style.opacity = '0.7'; });
+
+  // Disable button and show loading
+  var btn = document.querySelector('.form-btn');
+  var original = btn.textContent;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+
   try {
-    await fetch('/.netlify/functions/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email })
-    });
-  } catch(e) {}
-  window.location.href = '/thank-you';
+      await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      });
+    } catch(e) {
+      // continue to redirect
+    }
 }
 </script>
+
 </body>
 </html>
